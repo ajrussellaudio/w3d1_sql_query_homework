@@ -314,13 +314,14 @@ INSERT 0 1
   ```
   And Val's correct `id` is paired with the show's `id`, which can be proven with a `JOIN`...
   ```
-  # SELECT * FROM shows_users
-  INNER JOIN users ON users.id = shows_users.user_id
+  # SELECT users.name, shows_users.user_id, shows_users.show_id, shows.name FROM users
+  INNER JOIN shows_users ON users.id = shows_users.user_id
+  INNER JOIN shows ON shows_users.show_id = shows.id
   WHERE users.name LIKE 'Val%';
-  
-    id | show_id | user_id | id |    name
-   ----+---------+---------+----+------------
-    83 |      12 |      20 | 20 | Val Gibson
+      name    | user_id | show_id |             name             
+  ------------+---------+---------+------------------------------
+   Val Gibson |      20 |      12 | Two girls, one cup of comedy
+  (1 row)
     ```
 
     BOOM!
