@@ -180,7 +180,10 @@ Using the SQL Database file given to you as the source of data to answer the que
 
   15. Select the name and price of the second from cheapest show.
   ```
-  # SELECT name, price FROM shows                              WHERE price = (SELECT MAX(price) FROM shows                               WHERE price < (SELECT MAX(price) FROM shows));
+  # SELECT name, price FROM shows
+  WHERE price = (SELECT MAX(price) FROM shows
+  WHERE price < (SELECT MAX(price) FROM shows));
+  
        name     | price 
   --------------+-------
    Balletronics | 32.00
@@ -189,7 +192,8 @@ Using the SQL Database file given to you as the source of data to answer the que
 
   16. Select the names of all users whose names start with the letter "N".
   ```
-  # SELECT name FROM users WHERE name LIKE 'N%';                     name       
+  # SELECT name FROM users WHERE name LIKE 'N%';
+        name       
   -----------------
    Nico di Lillo
    Natalie Simpson
