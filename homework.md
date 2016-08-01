@@ -183,7 +183,7 @@ Using the SQL Database file given to you as the source of data to answer the que
   # SELECT name, price FROM shows
   WHERE price = (SELECT MAX(price) FROM shows
   WHERE price < (SELECT MAX(price) FROM shows));
-  
+
        name     | price 
   --------------+-------
    Balletronics | 32.00
@@ -217,9 +217,76 @@ Using the SQL Database file given to you as the source of data to answer the que
   The following questions can be answered by using nested SQL statements but ideally you should learn about JOIN clauses to answer them.
 
   18. Select the time for the Edinburgh Royal Tattoo.
+  ```
+  # SELECT shows.name, times.time FROM times
+  INNER JOIN shows ON times.show_id = shows.id
+  WHERE shows.name = 'Edinburgh Royal Tattoo';
+            name          | time  
+  ------------------------+-------
+   Edinburgh Royal Tattoo | 22:00
+  (1 row)
+  ```
 
   19. Select the number of users who want to see "Shitfaced Shakespeare".
+  ```
+  # SELECT COUNT(users.name) FROM users
+  INNER JOIN shows_users ON users.id = shows_users.user_id
+  INNER JOIN shows ON shows.id = shows_users.show_id
+  WHERE shows.name = 'Shitfaced Shakespeare';
+   count 
+  -------
+       7
+  (1 row)
+  ```
 
   20. Select all of the user names and the count of shows they're going to see.
+  ```
+  # SELECT users.name, COUNT(shows.name) FROM users
+  INNER JOIN shows_users ON users.id = shows_users.user_id
+  INNER JOIN shows ON shows.id = shows_users.show_id
+  GROUP BY users.name;
+
+         name       | count 
+  ------------------+-------
+   Chris Flint      |     4
+   Euan Blackledge  |     4
+   Joe Maher        |     5
+   Ashleigh Adams   |     4
+   Russell Williams |     6
+   Nico di Lillo    |     4
+   Megan Strachan   |     5
+   Keith Douglas    |     6
+   Sam Werngren     |     5
+   Marie Moyles     |     7
+   Iain Stewart     |     6
+   Natalie Simpson  |     8
+   Davide de Lerma  |     7
+   Jay Chetty       |     5
+   Rick Henri       |     5
+  (15 rows)
+  ```
 
   21. SELECT all users who are going to a show at 17:15.
+  ```
+  # SELECT users.name FROM users
+  INNER JOIN shows_users ON users.id = shows_users.user_id
+  INNER JOIN shows ON shows_users.show_id = shows.id
+  INNER JOIN times ON shows.id = times.show_id
+  WHERE time = '17:15';
+
+         name       
+  ------------------
+   Rick Henri
+   Keith Douglas
+   Euan Blackledge
+   Joe Maher
+   Marie Moyles
+   Sam Werngren
+   Davide de Lerma
+   Megan Strachan
+   Russell Williams
+   Sam Werngren
+   Iain Stewart
+   Natalie Simpson
+  (12 rows)
+  ```
