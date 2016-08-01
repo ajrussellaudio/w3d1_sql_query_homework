@@ -290,3 +290,37 @@ Using the SQL Database file given to you as the source of data to answer the que
    Natalie Simpson
   (12 rows)
   ```
+## Extra Credit?
+
+  Question 4 can be made more dynamic...
+  ```
+  # INSERT INTO users (name) VALUES ('Val Gibson');
+  ```
+  This adds Val back into the DB (We deleted her previously). Note that Val's `id` is now 20...
+  ```
+  # SELECT * FROM users WHERE name LIKE 'Val%';
+   id |    name    
+  ----+------------
+   20 | Val Gibson
+  (1 row)
+  ```
+  The queries to find Val and the show's `id`s can be entered straight into the `INSERT INTO shows_users` query...
+  ```
+  # INSERT INTO shows_users (show_id, user_id) VALUES (
+    (SELECT id FROM shows WHERE name = 'Two girls, one cup of comedy'), 
+    (SELECT id FROM users WHERE name = 'Val Gibson'));
+
+INSERT 0 1
+  ```
+  And Val's correct `id` is paired with the show's `id`, which can be proven with a `JOIN`...
+  ```
+  # SELECT * FROM shows_users
+  INNER JOIN users ON users.id = shows_users.user_id
+  WHERE users.name LIKE 'Val%';
+    id | show_id | user_id | id |    name
+   ----+---------+---------+----+------------
+    83 |      12 |      20 | 20 | Val Gibson
+    ```
+
+    BOOM!
+
