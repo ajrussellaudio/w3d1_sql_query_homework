@@ -218,7 +218,7 @@ Using the SQL Database file given to you as the source of data to answer the que
 
   18. Select the time for the Edinburgh Royal Tattoo.
   ```
-  # SELECT shows.name, times.time FROM times
+  # SELECT time FROM times
   INNER JOIN shows ON times.show_id = shows.id
   WHERE shows.name = 'Edinburgh Royal Tattoo';
             name          | time  
