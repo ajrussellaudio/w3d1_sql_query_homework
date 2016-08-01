@@ -317,6 +317,7 @@ INSERT 0 1
   # SELECT * FROM shows_users
   INNER JOIN users ON users.id = shows_users.user_id
   WHERE users.name LIKE 'Val%';
+  
     id | show_id | user_id | id |    name
    ----+---------+---------+----+------------
     83 |      12 |      20 | 20 | Val Gibson
