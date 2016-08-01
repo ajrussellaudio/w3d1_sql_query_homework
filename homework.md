@@ -112,22 +112,100 @@ Using the SQL Database file given to you as the source of data to answer the que
   This section involves more complex queries.  You will need to go and find out about aggregate funcions in SQL to answer some of the next questions.
 
   9. Select the names and prices of all shows, ordered by price in ascending order.
+  ```
+  # SELECT name, price FROM shows ORDER BY price ASC;
+
+                    name                   | price 
+  -----------------------------------------+-------
+   Two girls, one cup of comedy            |  6.00
+   Best of Burlesque                       |  7.99
+   Two become One                          |  8.50
+   Urinetown                               |  8.50
+   Paul Dabek Mischief                     | 12.99
+   Le Haggis                               | 12.99
+   Joe Stilgoe: Songs on Film – The Sequel | 16.50
+   Game of Thrones - The Musical           | 16.50
+   Shitfaced Shakespeare                   | 16.50
+   Aaabeduation – A Magic Show             | 17.99
+   Camille O'Sullivan                      | 17.99
+   Balletronics                            | 32.00
+   Edinburgh Royal Tattoo                  | 32.99
+  (13 rows)
+  ```
 
   10. Select the average price of all shows.
+  ```
+  # SELECT AVG(price) FROM shows;
+           avg         
+  ---------------------
+   15.9569230769230769
+  (1 row)
+  ```
 
   11. Select the price of the least expensive show.
+  ```
+  # SELECT MIN(price) FROM shows;
+   min  
+  ------
+   6.00
+  (1 row)
+  ```
 
   12. Select the sum of the price of all shows.
+  ```
+  # SELECT SUM(price) FROM shows;
+    sum   
+  --------
+   207.44
+  (1 row)
+  ```
 
   13. Select the sum of the price of all shows whose prices is less than £20.
+  ```
+  # SELECT SUM(price) FROM shows WHERE price < 20;
+    sum   
+  --------
+   142.45
+  (1 row)
+  ```
 
   14. Select the name and price of the most expensive show.
+  ```
+  # SELECT name, price FROM shows WHERE price = (SELECT MAX(price) FROM shows);
+            name          | price 
+  ------------------------+-------
+   Edinburgh Royal Tattoo | 32.99
+  (1 row)
+  ```
 
   15. Select the name and price of the second from cheapest show.
+  ```
+  # SELECT name, price FROM shows                              WHERE price = (SELECT MAX(price) FROM shows                               WHERE price < (SELECT MAX(price) FROM shows));
+       name     | price 
+  --------------+-------
+   Balletronics | 32.00
+  (1 row)
+  ```
 
   16. Select the names of all users whose names start with the letter "N".
+  ```
+  # SELECT name FROM users WHERE name LIKE 'N%';                     name       
+  -----------------
+   Nico di Lillo
+   Natalie Simpson
+  (2 rows)
+  ```
 
   17. Select the names of users whose names contain "er".
+  ```
+  # SELECT name FROM users WHERE name LIKE '%er%';
+        name       
+  -----------------
+   Joe Maher
+   Sam Werngren
+   Davide de Lerma
+  (3 rows)
+  ```
 
 
 ## Section 3
