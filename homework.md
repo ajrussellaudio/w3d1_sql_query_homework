@@ -22,10 +22,50 @@ Using the SQL Database file given to you as the source of data to answer the que
   Revision of concepts that we've learnt in SQL today
 
   1. Select the names of all users.
+  ```
+  # SELECT name FROM users;
+         name       
+  ------------------
+   Rick Henri
+   Jay Chetty
+   Keith Douglas
+   Ashleigh Adams
+   Euan Blackledge
+   Chris Flint
+   Nico di Lillo
+   Joe Maher
+   Marie Moyles
+   Iain Stewart
+   Megan Strachan
+   Russell Williams
+   Sam Werngren
+   Natalie Simpson
+   Davide de Lerma
+   Josh Kearns
+   Renwick Drysdale
+   Brian Morrice
+  (18 rows)
+  ```
 
   2. Select the names of all shows that cost less than £15.
+  ```
+  # SELECT name FROM shows WHERE price < 15;
+               name             
+  ------------------------------
+   Le Haggis
+   Paul Dabek Mischief 
+   Best of Burlesque
+   Two become One
+   Urinetown
+   Two girls, one cup of comedy
+  (6 rows)
+  ```
 
   3. Insert a user with the name "Val Gibson" into the users table.
+  ```
+  # INSERT INTO users (name) VALUES ('Val Gibson');
+  INSERT 0 1
+  ```
 
   4. Insert a record that Val Gibson wants to attend the show "Two girls, one cup of comedy".
 
