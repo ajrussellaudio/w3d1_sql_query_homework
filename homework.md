@@ -68,13 +68,43 @@ Using the SQL Database file given to you as the source of data to answer the que
   ```
 
   4. Insert a record that Val Gibson wants to attend the show "Two girls, one cup of comedy".
+  ```
+  # SELECT id FROM users WHERE name = 'Val Gibson';
+  -- Gets Val's 'id' in 'users'
+
+   id 
+  ----
+   19
+
+  # SELECT id FROM shows WHERE name = 'Two girls, one cup of comedy';
+  -- Gets show's 'id' in 'shows'
+
+   id 
+  ----
+   12
+
+  # INSERT INTO shows_users (show_id, user_id) VALUES (12, 19);
+  INSERT 0 1
+
+  -- There *must* be a quicker way of doing this...
+  ```
+
 
   5. Updates the name of the "Val Gibson" user to be "Valerie Gibson".
-
+  ```
+  # UPDATE users SET name = 'Valerie Gibson' WHERE name = 'Val Gibson';
+  UPDATE 1
+  ```
   6. Deletes the user with the name 'Valerie Gibson'.
-
+  ```
+  # DELETE FROM users WHERE name = 'Valerie Gibson';
+  DELETE 1
+  ```
   7. Deletes the shows for the user you just deleted.
-
+  ```
+  # DELETE FROM shows_users WHERE user_id = 19;
+  DELETE 1
+  ```
 
 ## Section 2
 
