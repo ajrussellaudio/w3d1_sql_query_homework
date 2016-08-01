@@ -89,17 +89,18 @@ Using the SQL Database file given to you as the source of data to answer the que
   -- There *must* be a quicker way of doing this...
   ```
 
-
   5. Updates the name of the "Val Gibson" user to be "Valerie Gibson".
   ```
   # UPDATE users SET name = 'Valerie Gibson' WHERE name = 'Val Gibson';
   UPDATE 1
   ```
+
   6. Deletes the user with the name 'Valerie Gibson'.
   ```
   # DELETE FROM users WHERE name = 'Valerie Gibson';
   DELETE 1
   ```
+
   7. Deletes the shows for the user you just deleted.
   ```
   # DELETE FROM shows_users WHERE user_id = 19;
